@@ -14,6 +14,32 @@ var canvas = d3.select('.canvas')
 console.log("Start to load data...")
 
 //Start to load data
-d3.csv('data/data.csv',function(err,rows){
-    console.log(rows);
+//d3.csv('data/data.csv',function(err,rows){
+    /*d3.csv is a function
+    PARAMETROS
+    String: data/data.csv
+    err is necessary for when there is a error
+    d3.csv(url, [accessor,] callback)
+    accessor is a function
+    callback is a function
+
+    this is the same as
+    ...
+     */
+
+d3.csv('data/data.csv',
+    function(oldRow){
+        console.log(oldRow);
+        var newRow = {
+            x: +oldRow.x,
+            //+ converts strings into numbers
+            y: +oldRow.y,
+            r: +oldRow.r
+        };
+        return newRow;
+    },
+    function(err,rows){
+        console.log(rows)
 })
+
+console.log("after data")
